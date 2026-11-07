@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>学习项目合集</title>
+<style>
+  :root {
+    --bg: #edf0f4;
+    --card: #ffffff;
+    --text: #2c3440;
+    --muted: #66707c;
+    --accent: #4a6f8f;
+    --border: #dde3ea;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Segoe UI", "Microsoft YaHei", system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 48px 16px;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; }
+  header { text-align: center; margin-bottom: 40px; }
+  h1 { font-size: 28px; font-weight: 700; margin-bottom: 8px; }
+  header p { color: var(--muted); font-size: 15px; }
+  .cards { display: flex; flex-direction: column; gap: 14px; }
+  a.card {
+    display: block;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    text-decoration: none;
+    color: var(--text);
+    transition: border-color .15s, transform .15s, box-shadow .15s;
+  }
+  a.card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(44, 52, 64, .10);
+  }
+  .card h2 { font-size: 18px; font-weight: 600; margin-bottom: 6px; }
+  .card p { font-size: 14px; color: var(--muted); line-height: 1.6; }
+  .card .tag {
+    display: inline-block;
+    font-size: 12px;
+    color: var(--accent);
+    background: rgba(74, 111, 143, .10);
+    border-radius: 999px;
+    padding: 2px 10px;
+    margin-left: 8px;
+    vertical-align: 2px;
+  }
+  footer { text-align: center; margin-top: 40px; color: var(--muted); font-size: 13px; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>学习项目合集</h1>
+      <p>三个自制的学习工具网页 · 双击打开即用</p>
+    </header>
+
+    <div class="cards">
+      <a class="card" href="物理错题本/index.html">
+        <h2>物理错题本<span class="tag">刷题 APP</span></h2>
+        <p>高中物理刷题：习题练习、错题本、题目管理、OCR 导入、难度评级、个性化推荐。</p>
+      </a>
+      <a class="card" href="线代期中复习/刷题网页/index.html">
+        <h2>线代刷题网页<span class="tag">90 题</span></h2>
+        <p>线性代数交互刷题：选题 / 做题 / 判分（对·半对·错）/ 错题本 / 收藏 / 统计 / 随机组卷。</p>
+      </a>
+      <a class="card" href="线代期中复习/词典网页/index.html">
+        <h2>线代词典网页<span class="tag">97 词条</span></h2>
+        <p>线性代数英文术语 EN-CN 可搜索词典，公式本地渲染。</p>
+      </a>
+      <a class="card" href="元素周期表/index.html">
+        <h2>元素周期表<span class="tag">118 元素</span></h2>
+        <p>周期表视图、go / plus / pro 三种测试模式、错题本、多账号，支持发音。</p>
+      </a>
+    </div>
+
+    <footer>数据保存在浏览器 localStorage · 多账号互不干扰</footer>
+  </div>
+</body>
+</html>

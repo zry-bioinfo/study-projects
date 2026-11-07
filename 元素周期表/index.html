@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>元素周期表</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- 顶栏 -->
+  <header id="topbar">
+    <div class="brand-wrap">
+      <div class="brand">元素周期表</div>
+      <span id="account-name" class="account-name" hidden></span>
+    </div>
+    <nav class="nav">
+      <button type="button" class="nav-btn active" data-view="table">元素周期表</button>
+      <button type="button" class="nav-btn" data-view="test">测试</button>
+      <button type="button" class="nav-btn" data-view="mistakes">错题本<span id="badge" class="badge" hidden>0</span></button>
+      <button type="button" class="nav-btn" data-view="accounts">账号管理</button>
+    </nav>
+  </header>
+
+  <!-- 视图一：主页面（完整周期表） -->
+  <section id="view-table" class="view active">
+    <div class="legend">
+      <span class="legend-item"><i class="swatch block-s"></i>s 区</span>
+      <span class="legend-item"><i class="swatch block-d"></i>d 区</span>
+      <span class="legend-item"><i class="swatch block-ds"></i>ds 区</span>
+      <span class="legend-item"><i class="swatch block-p"></i>p 区</span>
+      <span class="legend-item"><i class="swatch block-f"></i>f 区</span>
+      <span class="legend-tip">点击任意元素查看详情</span>
+    </div>
+    <div class="table-scroll">
+      <div class="table-wrap">
+        <div class="group-header" id="group-header"></div>
+        <div class="table" id="periodic-table"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 视图二：测试 -->
+  <section id="view-test" class="view">
+    <div class="test-card">
+      <div class="test-top">
+        <span class="test-banner" id="test-banner">随机测试</span>
+        <button type="button" class="btn btn-outline" id="btn-exit">退出</button>
+      </div>
+
+      <!-- 三种测试模式 -->
+      <div class="type-select">
+        <button type="button" class="type-btn active" data-type="go">go<span class="type-hint">中文 → 英文</span></button>
+        <button type="button" class="type-btn" data-type="plus">plus<span class="type-hint">三要素</span></button>
+        <button type="button" class="type-btn" data-type="pro">pro<span class="type-hint">电子排布</span></button>
+      </div>
+
+      <div class="q-box">
+        <div class="q-period" id="q-period"></div>
+        <div class="q-zh" id="q-zh"></div>
+        <div class="q-group" id="q-group"></div>
+      </div>
+
+      <!-- go：只给中文名 → 输入元素符号 + 英文名 -->
+      <div class="form-row" id="go-inputs" hidden>
+        <div class="form-group">
+          <label class="form-label" for="in-sym">元素符号</label>
+          <input type="text" id="in-sym" class="form-input" placeholder="Symbol" autocomplete="off">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="in-en">英文名</label>
+          <input type="text" id="in-en" class="form-input" placeholder="English name" autocomplete="off">
+        </div>
+      </div>
+
+      <!-- plus：三要素互推（每道题只出现两个输入区） -->
+      <div class="form-row" id="plus-inputs" hidden>
+        <div class="form-group" id="plus-names-wrap" hidden>
+          <label class="form-label">英文名 + 符号</label>
+          <div class="pair-input">
+            <input type="text" id="p-en" class="form-input" placeholder="English name" autocomplete="off">
+            <input type="text" id="p-sym" class="form-input" placeholder="符号" autocomplete="off">
+          </div>
+        </div>
+        <div class="form-group" id="plus-z-wrap" hidden>
+          <label class="form-label" for="p-z">原子序数</label>
+          <input type="number" id="p-z" class="form-input" placeholder="1–118" autocomplete="off">
+        </div>
+      </div>
+
+      <!-- 元素位置选项填空（plus / pro 共用） -->
+      <div class="pos-wrap" id="pos-field" hidden>
+        <label class="form-label">元素位置</label>
+        <div class="pos-input">
+          <span>第</span>
+          <button type="button" class="pos-blank" id="pos-period">＿</button>
+          <span>周期</span>
+          <button type="button" class="pos-blank" id="pos-group">＿</button>
+          <span>族</span>
+        </div>
+        <div class="pos-options" id="pos-options" hidden></div>
+      </div>
+
+      <!-- pro：给中文名+英文名 → 输入元素位置 + 电子排布式 -->
+      <div id="pro-inputs" hidden>
+        <div class="form-group">
+          <label class="form-label" for="pro-cfg">电子排布式</label>
+          <textarea id="pro-cfg" class="form-input cfg-input" rows="3" placeholder="例如：1s² 2s² 2p⁶"></textarea>
+        </div>
+        <div class="sup-pad" id="sup-pad"></div>
+      </div>
+
+      <button type="button" class="btn btn-primary btn-block" id="btn-submit">提交</button>
+      <div class="feedback" id="feedback"></div>
+      <button type="button" class="btn btn-outline btn-block" id="btn-skip" hidden>下一题 →</button>
+    </div>
+  </section>
+
+  <!-- 视图三：错题本 -->
+  <section id="view-mistakes" class="view">
+    <div class="mistake-head">
+      <h1>错题本</h1>
+      <div class="mistake-actions">
+        <span class="mistake-total" id="mistake-total">共 0 个错题词条</span>
+        <button type="button" class="btn btn-primary" id="btn-review">错题复习</button>
+      </div>
+    </div>
+    <div class="mistake-list" id="mistake-list"></div>
+    <div class="empty-state" id="mistake-empty" hidden>
+      <span class="empty-icon">📭</span>
+      <p>暂无错题记录</p>
+      <p class="empty-sub">在「测试」中答错的元素会出现在这里</p>
+    </div>
+  </section>
+
+  <!-- 首次使用：新建账号 -->
+  <section id="view-create" class="view">
+    <div class="create-card">
+      <h1>新建账号</h1>
+      <p class="create-sub">首次使用，请先为你的学习记录创建一个账号。<br>每个账号拥有各自独立的错题本，互不干扰。</p>
+      <input type="text" id="create-name" class="form-input" placeholder="输入账号名称" maxlength="20" autocomplete="off">
+      <div class="create-error" id="create-error"></div>
+      <button type="button" class="btn btn-primary btn-block" id="btn-confirm-create">创建账号</button>
+    </div>
+  </section>
+
+  <!-- 视图四：账号管理 -->
+  <section id="view-accounts" class="view">
+    <div class="account-head">
+      <h1>账号管理</h1>
+      <div class="account-form">
+        <input type="text" id="new-account-name" class="form-input" placeholder="新账号名称" maxlength="20" autocomplete="off">
+        <button type="button" class="btn btn-primary" id="btn-create-account">新建账号</button>
+      </div>
+      <div class="account-error" id="account-error"></div>
+    </div>
+    <div class="account-list" id="account-list"></div>
+  </section>
+
+  <!-- 元素详情浮动小窗 -->
+  <div id="popup" class="popup" hidden>
+    <button type="button" class="popup-close" id="popup-close" aria-label="关闭">×</button>
+    <div id="popup-content"></div>
+  </div>
+
+  <!-- 发音（有道在线TTS + 浏览器语音兜底） -->
+  <audio id="tts"></audio>
+
+  <!-- 经典 script，file:// 下可正常加载；顺序：data → store → app -->
+  <script src="js/data.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

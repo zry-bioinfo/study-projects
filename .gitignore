@@ -1,0 +1,11 @@
+# 系统与缓存文件
+Thumbs.db
+.DS_Store
+
+# Python / Node 缓存
+__pycache__/
+node_modules/
+.venv/
+
+# 压缩包备份
+*.zip

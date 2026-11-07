@@ -1,0 +1,65 @@
+/* 词典网页样式 — 与刷题网页同主题（米色纸感） */
+:root {
+  --bg: #f5f0e8; --card: #ffffff; --primary: #4a7c59; --primary-dark: #3a6347;
+  --text: #2f2a24; --text-muted: #8a8175; --border: #e5dcc8;
+  --radius: 14px; --shadow: 0 2px 8px rgba(60, 50, 30, .08);
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); }
+body { font-family: "Microsoft YaHei", "微软雅黑", "Segoe UI", sans-serif; font-size: 15px; line-height: 1.6; }
+#app { max-width: 720px; margin: 0 auto; padding: 14px 16px 40px; }
+
+header h1 { font-size: 21px; margin: 4px 0 2px; }
+header .sub { font-size: 13px; color: var(--text-muted); margin: 0 0 10px; }
+
+/* 搜索框 */
+.search-box {
+  position: sticky; top: 0; z-index: 5; background: var(--bg);
+  padding: 6px 0 10px;
+}
+.search-input {
+  width: 100%; border: 1px solid var(--border); border-radius: 22px;
+  padding: 10px 18px; font-size: 15px; font-family: inherit; background: var(--card);
+  box-shadow: var(--shadow);
+}
+.search-input:focus { outline: 2px solid var(--primary); border-color: transparent; }
+.search-hint { font-size: 12px; color: var(--text-muted); margin: 6px 2px 0; }
+
+/* 中英切换 */
+.lang-toggle { display: flex; gap: 6px; margin: 8px 0; }
+.chip {
+  border: 1px solid var(--border); background: var(--card); color: var(--text);
+  border-radius: 20px; padding: 4px 13px; font-size: 13px; cursor: pointer;
+}
+.chip.on { background: var(--primary); border-color: var(--primary); color: #fff; }
+
+/* 主题 chip 跳转 */
+.topic-chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0 14px; }
+.topic-chips .chip { font-size: 12px; }
+
+/* 分组 */
+.group { margin-bottom: 10px; }
+.group-head {
+  background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow);
+  padding: 11px 16px; cursor: pointer; display: flex; justify-content: space-between; align-items: center;
+  font-weight: bold; font-size: 15px;
+}
+.group-head .count { font-size: 12px; color: var(--text-muted); font-weight: normal; }
+.group-head.collapsed + .term-list { display: none; }
+.term-list { padding: 4px 0 8px; }
+
+/* 词条卡片 */
+.term {
+  background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow);
+  padding: 11px 16px; margin: 8px 0;
+}
+.term .title-en { font-weight: bold; font-size: 15px; color: var(--primary-dark); }
+.term .title-cn { font-size: 13px; color: var(--text-muted); margin-left: 8px; }
+.term .def { margin-top: 6px; font-size: 14px; }
+.term .note { margin-top: 5px; font-size: 13px; color: #a06a1f; background: #f8f1e2; border-radius: 8px; padding: 6px 10px; }
+.term .topic-tag { font-size: 11px; background: #e3ede5; color: var(--primary-dark); border-radius: 5px; padding: 1px 7px; }
+
+.empty { text-align: center; color: var(--text-muted); padding: 40px 10px; }
+.hit { background: #f5ead3; border-radius: 3px; }
+
+.katex { font-size: 1.05em; }
